@@ -43,7 +43,7 @@ summary_writer = tf.summary.FileWriter('./tmp/1',session.graph)
 <tensorflow.python.summary.writer.writer.FileWriter at 0x2074aa39848>
 """
 ```
-p
+
 ```
 tensorboard --logdir=./tmp/1
 Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
@@ -107,9 +107,6 @@ print(tf.version)
 |`[y]`|Code로 변경|
 |`[ctrl] + [s]` 또는 `[s]`| 파일 저장|
 |`[enter]`|선택 셀의 코드 입력 모드로 돌아가기|
-
-
-출처: https://kkokkilkon.tistory.com/151 [꼬낄콘의 분석일지]
 
 ### 주요단축키 (Edit 모드)
 
