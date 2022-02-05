@@ -1,21 +1,49 @@
 from block import Block
 
-def test_block0_show():
-
+def test_block_show():
+    
     # given
+    show_blocks = [
+        [
+            [1,1],
+            [1,1]
+        ],
+        [
+            [1,1],
+            [0,1],
+            [0,1]
+        ],
+        [
+            [1,1],
+            [1,0],
+            [1,0]
+        ],
+        [
+            [0,1],
+            [1,1],
+            [0,1]
+        ],
+        [
+            [0,1],
+            [1,1],
+            [1,0]
+        ],
+        [
+            [1,0],
+            [1,1],
+            [0,1]
+        ],
+        [
+            [0,1],
+            [0,1],
+            [0,1],
+            [0,1]
+        ],
+    ]
+
+    
     # when
-    b = Block(0)
-
     # then
-    assert b.show() == [[1,1],[1,1]]
-
-def test_block1_show():
-
-    # given
-    # when
-    b = Block(1)
-
-    # then
-    assert b.show() == [ [1,1]
-                        ,[0,1]
-                        ,[0,1]]
+    for i in range(len(show_blocks)):
+        b = Block(i)
+        assert b.show() == show_blocks[i]
