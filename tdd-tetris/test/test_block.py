@@ -34,10 +34,10 @@ def test_block_show():
             [0,1]
         ],
         [
-            [0,1],
-            [0,1],
-            [0,1],
-            [0,1]
+            [1],
+            [1],
+            [1],
+            [1]
         ],
     ]
 
@@ -92,3 +92,4 @@ def test_random_block():
     assert len(b.blocks) > 0
     assert b.shape_idx >= 0
     assert b.shape_idx < len(b.blocks)
+
