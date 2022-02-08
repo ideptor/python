@@ -1,5 +1,11 @@
 from block import Block
 import copy
+from enum import Enum
+
+class Direction(Enum):
+    DOWN = 1
+    LEFT = 2
+    RIGHT = 3
 
 class Board:
     
@@ -26,4 +32,6 @@ class Board:
         self.block_y = 0
         self.block_x = int((10 - self.block.width) / 2)
         
-
+    def move_block(self, direction: Direction):
+        if direction == Direction.DOWN:
+            self.block_y += 1
