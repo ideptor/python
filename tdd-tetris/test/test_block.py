@@ -93,3 +93,15 @@ def test_random_block():
     assert b.shape_idx >= 0
     assert b.shape_idx < len(b.blocks)
 
+
+def test_block_height_width():
+
+    # given
+    b = Block(1)
+
+    # when
+    # then
+    assert b.get_height_width() == (3,2)
+
+    b.rotate()
+    assert b.get_height_width() == (2,3)
