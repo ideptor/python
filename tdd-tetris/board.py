@@ -2,12 +2,15 @@ from block import Block
 import copy
 from enum import Enum
 
+
 class Direction(Enum):
     DOWN = 1
     LEFT = 2
     RIGHT = 3
 
 class Board:
+
+    __MAX_WIDTH = 10
     
     def __init__(self, lines:int = 10):
         self.lines = lines
@@ -33,10 +36,21 @@ class Board:
         self.block_x = int((10 - self.block.width) / 2)
         
     def move_block(self, direction: Direction):
+
+        height, width = self.block.get_height_width()
+
         if direction == Direction.DOWN:
+            if self.block_y + height >= self.lines:
+                return
             self.block_y += 1
+
         elif direction == Direction.LEFT:
+            if self.block_x <= 0:
+                return
             self.block_x -= 1
+
         elif direction == Direction.RIGHT:
+            if self.block_x + width >= self.__MAX_WIDTH:
+                return
             self.block_x += 1
 

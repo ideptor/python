@@ -60,9 +60,55 @@ def test_move():
     board.move_block(Direction.LEFT)
     assert board.show() == left
 
-    # when & then - left
+    # when & then - right
     board.set_cur_block(0)
     assert board.show() == before
     board.move_block(Direction.RIGHT)
     assert board.show() == right
 
+
+def test_not_move_at_edge():
+
+    # given
+    down = [
+        EMPTY_LINE,
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+    ]
+    left = [
+        [1,1,0,0,0,0,0,0,0,0],
+        [1,1,0,0,0,0,0,0,0,0],
+        EMPTY_LINE
+    ]
+    right = [
+        [0,0,0,0,0,0,0,0,1,1],
+        [0,0,0,0,0,0,0,0,1,1],
+        EMPTY_LINE
+    ]
+    board = Board(3)
+
+    # when & then - down
+    board.set_cur_block(0)
+    board.move_block(Direction.DOWN)
+
+    assert board.show() == down
+    board.move_block(Direction.DOWN)
+    assert board.show() == down
+
+
+    # when & then - left
+    board.set_cur_block(0)
+    for _ in range(4):
+        board.move_block(Direction.LEFT)
+
+    assert board.show() == left
+    board.move_block(Direction.LEFT)
+    assert board.show() == left
+
+    # when & then - right
+    board.set_cur_block(0)
+    for _ in range(4):
+        board.move_block(Direction.RIGHT)
+    assert board.show() == right
+    board.move_block(Direction.RIGHT)
+    assert board.show() == right
