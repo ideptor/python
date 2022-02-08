@@ -2,23 +2,7 @@ from board import Board
 
 EMPTY_LINE = [0 for _ in range(10)]
 
-def test_create_board():
-
-    
-    # given
-    lines = 11
-    empty_bloard_matrix = [[0]*10 for _ in range(lines)]
-
-    # when
-    board = Board(lines)
-    matrix = board.show()
-
-    # then
-    assert matrix == empty_bloard_matrix
-
-
-""""
-def test_set_next_block():
+def test_set_cur_block():
 
     # given
     board_matrix = [
@@ -32,5 +16,9 @@ def test_set_next_block():
     board.set_cur_block(0)
 
     # then
+    assert board.block.shape_idx == 0
+    assert board.block.rotate_idx == 0
+    assert board.block_x == 4
+    assert board.block_y == 0
     assert board.show() == board_matrix
-"""
+

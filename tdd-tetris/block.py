@@ -5,11 +5,7 @@ class Block:
     shape_idx = 0
 
     def __init__(self, shape_idx:int = -1):
-        self.rotate_idx = 0
-        self.__change_shape(shape_idx)
-
-    def show(self):
-        return self.blocks[self.shape_idx][self.rotate_idx]
+        self.reset(shape_idx)
 
     def __change_shape(self, shape_idx):
         if shape_idx == -1:
@@ -24,6 +20,13 @@ class Block:
         cur = self.blocks[self.shape_idx][self.rotate_idx]
         self.height = len(cur)
         self.width = len(cur[0])
+
+    def show(self):
+        return self.blocks[self.shape_idx][self.rotate_idx]
+
+    def reset(self, shape_idx:int = -1):
+        self.rotate_idx = 0
+        self.__change_shape(shape_idx)
 
     def get_height_width(self):
         return self.height, self.width
