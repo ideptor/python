@@ -22,7 +22,7 @@ def test_set_cur_block():
     assert board.block_y == 0
     assert board.show() == board_matrix
 
-def test_move_down():
+def test_move():
 
     # given
     before = [
@@ -30,17 +30,39 @@ def test_move_down():
         [0,0,0,0,1,1,0,0,0,0],
         EMPTY_LINE
     ]
-    after = [
+    down = [
         EMPTY_LINE,
         [0,0,0,0,1,1,0,0,0,0],
         [0,0,0,0,1,1,0,0,0,0],
     ]
+    left = [
+        [0,0,0,1,1,0,0,0,0,0],
+        [0,0,0,1,1,0,0,0,0,0],
+        EMPTY_LINE
+    ]
+    right = [
+        [0,0,0,0,0,1,1,0,0,0],
+        [0,0,0,0,0,1,1,0,0,0],
+        EMPTY_LINE
+    ]
+
     board = Board(3)
+
+    # when & then - down
     board.set_cur_block(0)
     assert board.show() == before
-
-    # when
     board.move_block(Direction.DOWN)
+    assert board.show() == down
 
-    # then
-    assert board.show() == after    
+    # when & then - left
+    board.set_cur_block(0)
+    assert board.show() == before
+    board.move_block(Direction.LEFT)
+    assert board.show() == left
+
+    # when & then - left
+    board.set_cur_block(0)
+    assert board.show() == before
+    board.move_block(Direction.RIGHT)
+    assert board.show() == right
+

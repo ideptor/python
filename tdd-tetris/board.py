@@ -35,3 +35,8 @@ class Board:
     def move_block(self, direction: Direction):
         if direction == Direction.DOWN:
             self.block_y += 1
+        elif direction == Direction.LEFT:
+            self.block_x -= 1
+        elif direction == Direction.RIGHT:
+            self.block_x += 1
+
