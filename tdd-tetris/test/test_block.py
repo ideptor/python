@@ -77,8 +77,8 @@ def test_rotate():
     b = Block(1)
 
     # then
-    for rotated in block1:
-        assert b.show() == rotated
+    for idx in range(10):
+        assert b.show() == block1[idx%len(block1)]
         b.rotate()
 
 
