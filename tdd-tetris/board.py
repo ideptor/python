@@ -42,6 +42,8 @@ class Board:
         if direction == Direction.DOWN:
             if self.block_y + height >= self.lines:
                 return
+            if self.__detect_collision(self.block_y+1, self.block_x):
+                return                                
             self.block_y += 1
 
         elif direction == Direction.LEFT:

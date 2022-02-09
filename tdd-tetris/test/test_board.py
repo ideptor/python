@@ -165,3 +165,29 @@ def test_not_move_right_where_alreay_filled():
     # then
     assert board.show() == showed  # not moved    
 
+
+def test_not_move_down_where_alreay_filled():
+    
+    # given
+    fixed = [       
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,2,2,2,2,0,0,0],
+    ]
+    showed = [
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,2,2,2,2,0,0,0],
+    ]
+    board = Board(3)
+    board.fixed = fixed
+    board.set_cur_block(0)
+
+    assert board.show() == showed
+
+    # when
+    board.move_block(Direction.DOWN)
+
+    # then
+    assert board.show() == showed  # not moved    
+
