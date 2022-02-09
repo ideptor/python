@@ -54,6 +54,8 @@ class Board:
         elif direction == Direction.RIGHT:
             if self.block_x + width >= self.__MAX_WIDTH:
                 return
+            if self.__detect_collision(self.block_y, self.block_x+1):
+                return                
             self.block_x += 1
 
     def __detect_collision(self, y, x):
