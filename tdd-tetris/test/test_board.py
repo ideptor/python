@@ -1,4 +1,4 @@
-from board import Board, Move
+from board import Board, Move, Point
 
 EMPTY_LINE = [0 for _ in range(10)]
 
@@ -18,8 +18,7 @@ def test_set_cur_block():
     # then
     assert board.block.shape_idx == 0
     assert board.block.rotate_idx == 0
-    assert board.block_pos.x == 4
-    assert board.block_pos.y == 0
+    assert board.block_pos == Point(4, 0)
     assert board.show() == board_matrix
 
 def test_move():
