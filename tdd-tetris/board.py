@@ -47,6 +47,8 @@ class Board:
         elif direction == Direction.LEFT:
             if self.block_x <= 0:
                 return
+            if self.__detect_collision(self.block_y, self.block_x-1):
+                return
             self.block_x -= 1
 
         elif direction == Direction.RIGHT:
@@ -54,3 +56,15 @@ class Board:
                 return
             self.block_x += 1
 
+    def __detect_collision(self, y, x):
+        
+        #showed = copy.deepcopy(self.fixed)
+        block_matrix = self.block.show()
+        height, width = self.block.get_height_width()
+        for dy in range(height):
+            for dx in range(width):
+                if self.fixed[y+dy][x+dx] > 0 and \
+                    block_matrix[dy][dx] > 0:
+                    return True
+        
+        return False
