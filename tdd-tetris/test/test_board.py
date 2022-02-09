@@ -1,4 +1,4 @@
-from board import Board, Direction
+from board import Board, Move
 
 EMPTY_LINE = [0 for _ in range(10)]
 
@@ -18,8 +18,8 @@ def test_set_cur_block():
     # then
     assert board.block.shape_idx == 0
     assert board.block.rotate_idx == 0
-    assert board.block_x == 4
-    assert board.block_y == 0
+    assert board.block_pos.x == 4
+    assert board.block_pos.y == 0
     assert board.show() == board_matrix
 
 def test_move():
@@ -51,19 +51,25 @@ def test_move():
     # when & then - down
     board.set_cur_block(0)
     assert board.show() == before
-    board.move_block(Direction.DOWN)
+
+    assert board.block_pos.y == 0
+    assert board.block.get_height_width()[0] == 2
+    assert board.lines == 3
+    board.move_block(Move.DOWN)
+    assert board.block_pos.y == 1
+    
     assert board.show() == down
 
     # when & then - left
     board.set_cur_block(0)
     assert board.show() == before
-    board.move_block(Direction.LEFT)
+    board.move_block(Move.LEFT)
     assert board.show() == left
 
     # when & then - right
     board.set_cur_block(0)
     assert board.show() == before
-    board.move_block(Direction.RIGHT)
+    board.move_block(Move.RIGHT)
     assert board.show() == right
 
 
@@ -89,28 +95,28 @@ def test_not_move_at_edge():
 
     # when & then - down
     board.set_cur_block(0)
-    board.move_block(Direction.DOWN)
+    board.move_block(Move.DOWN)
 
     assert board.show() == down
-    board.move_block(Direction.DOWN)
+    board.move_block(Move.DOWN)
     assert board.show() == down
 
 
     # when & then - left
     board.set_cur_block(0)
     for _ in range(4):
-        board.move_block(Direction.LEFT)
+        board.move_block(Move.LEFT)
 
     assert board.show() == left
-    board.move_block(Direction.LEFT)
+    board.move_block(Move.LEFT)
     assert board.show() == left
 
     # when & then - right
     board.set_cur_block(0)
     for _ in range(4):
-        board.move_block(Direction.RIGHT)
+        board.move_block(Move.RIGHT)
     assert board.show() == right
-    board.move_block(Direction.RIGHT)
+    board.move_block(Move.RIGHT)
     assert board.show() == right
 
 
@@ -134,7 +140,7 @@ def test_not_move_left_where_alreay_filled():
     assert board.show() == showed
 
     # when
-    board.move_block(Direction.LEFT)
+    board.move_block(Move.LEFT)
 
     # then
     assert board.show() == showed  # not moved
@@ -160,7 +166,7 @@ def test_not_move_right_where_alreay_filled():
     assert board.show() == showed
 
     # when
-    board.move_block(Direction.RIGHT)
+    board.move_block(Move.RIGHT)
 
     # then
     assert board.show() == showed  # not moved    
@@ -186,7 +192,7 @@ def test_not_move_down_where_alreay_filled():
     assert board.show() == showed
 
     # when
-    board.move_block(Direction.DOWN)
+    board.move_block(Move.DOWN)
 
     # then
     assert board.show() == showed  # not moved    
