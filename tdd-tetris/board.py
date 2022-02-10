@@ -76,8 +76,6 @@ class Board:
 
     def __collision_check(self, pos:Position) -> bool:
         
-        assert pos is not None
-        #showed = copy.deepcopy(self.fixed)
         block_matrix = self.block.show()
         height, width = self.block.get_height_width()
         for dy in range(height):
