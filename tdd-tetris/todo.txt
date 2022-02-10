@@ -1,0 +1,7 @@
+todo
+- rotation availible condition
+
+
+done
+- block color
+- remove filled <- fill check

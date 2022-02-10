@@ -44,8 +44,29 @@ class Board:
 
         return showed
 
+    def __remove_filled(self):
+        next_fixed = [[0]*10 for _ in range(self.lines)]
+        next_fixed_line = self.lines - 1
+        for i in range(self.lines):
+            line = self.lines - i - 1
+            for b in self.fixed[line]:
+                if b == 0:
+                    filled = False
+                    break
+            else:
+                filled = True
+
+            if filled == False:
+                next_fixed[next_fixed_line] = copy.deepcopy(self.fixed[line])
+                next_fixed_line -= 1
+        
+        self.fixed = next_fixed
+        
+
+
     def fix_block(self):
         self.fixed = self.show()
+        self.__remove_filled()
         self.block.reset()
 
     def set_cur_block(self, block_shape_idx:int=-1):

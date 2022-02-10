@@ -227,7 +227,7 @@ def test_fix_block():
         [0,0,0,0,1,1,0,0,0,0],
         [0,0,0,2,2,2,2,0,0,0],
     ]
-    board = Board(3)
+    board = Board(7)
     board.fixed = fixed
     board.set_cur_block(0)
     board.block_pos = Position(4,4)
@@ -241,3 +241,57 @@ def test_fix_block():
     # then
     assert board.fixed == showed  
     assert board.show() == showed2
+
+def test_remove_filled():
+    # given
+    fixed = [       
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [2,2,2,2,2,2,2,2,2,0],
+        [0,2,2,2,2,2,2,2,2,0],
+        [2,2,2,2,2,2,2,2,0,0],
+        [2,2,2,2,2,2,2,2,2,0],
+    ]
+    showed = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [2,2,2,2,2,2,2,2,2,7],
+        [0,2,2,2,2,2,2,2,2,7],
+        [2,2,2,2,2,2,2,2,0,7],
+        [2,2,2,2,2,2,2,2,2,7],
+    ]
+    fixed2 = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,2,2,2,2,2,2,2,2,7],
+        [2,2,2,2,2,2,2,2,0,7],
+    ]
+    showed2 = [
+        [0,0,0,0,0,4,0,0,0,0],
+        [0,0,0,0,4,4,0,0,0,0],
+        [0,0,0,0,0,4,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,2,2,2,2,2,2,2,2,7],
+        [2,2,2,2,2,2,2,2,0,7],
+    ]
+    board = Board(7)
+    board.fixed = fixed
+
+    board.set_cur_block(6)
+    board.block_pos = Position(3,9)
+    assert board.show() == showed
+
+    # when
+    board.fix_block()
+    board.set_cur_block(3)
+
+    # then
+    assert len(board.fixed) == 7
+    assert board.fixed == fixed2
+    assert board.show() == showed2    
