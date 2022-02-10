@@ -15,14 +15,14 @@ class Block:
         else:            
             self.shape_idx = shape_idx
         
-    def show(self):
+    def show(self) -> list:
         return self.blocks[self.shape_idx][self.rotate_idx]
 
     def reset(self, shape_idx:int = -1):
         self.rotate_idx = 0
         self.__change_shape(shape_idx)
 
-    def get_height_width(self):
+    def get_height_width(self) -> tuple:
         cur = self.blocks[self.shape_idx][self.rotate_idx]
         height = len(cur)
         width = len(cur[0])

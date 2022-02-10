@@ -1,7 +1,5 @@
 from block import Block
 import copy
-#from enum import Enum
-
 
 class Position:
 
@@ -62,8 +60,6 @@ class Board:
         
         self.fixed = next_fixed
         
-
-
     def fix_block(self):
         self.fixed = self.show()
         self.__remove_filled()
