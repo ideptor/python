@@ -13,17 +13,15 @@ class Position:
         if isinstance(other, Position):
             return Position(self.y+other.y, self.x+other.x)
 
+    def __eq__(self, other):
+        if self.y == other.y and self.x == other.x:
+            return True
+        return False
+
 class Move:
     DOWN = Position(1,0)
     LEFT = Position(0,-1)
     RIGHT = Position(0,1)
-
-"""
-class Direction(Enum):
-    DOWN = 1
-    LEFT = 2
-    RIGHT = 3
-"""
 
 class Board:
 
@@ -45,6 +43,10 @@ class Board:
                     block_matrix[dy][dx]
 
         return showed
+
+    def fix_block(self):
+        self.fixed = self.show()
+        self.block.reset()
 
     def set_cur_block(self, block_shape_idx:int=-1):
         self.block.reset(block_shape_idx)

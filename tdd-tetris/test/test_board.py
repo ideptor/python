@@ -1,4 +1,4 @@
-from board import Board, Move, Point
+from board import Board, Move, Position
 
 EMPTY_LINE = [0 for _ in range(10)]
 
@@ -18,7 +18,7 @@ def test_set_cur_block():
     # then
     assert board.block.shape_idx == 0
     assert board.block.rotate_idx == 0
-    assert board.block_pos == Point(4, 0)
+    assert board.block_pos == Position(0, 4)
     assert board.show() == board_matrix
 
 def test_move():
@@ -196,3 +196,48 @@ def test_not_move_down_where_alreay_filled():
     # then
     assert board.show() == showed  # not moved    
 
+
+def test_fix_block():
+    
+    # given
+    fixed = [       
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,2,2,2,2,0,0,0],
+    ]
+    showed = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,2,2,2,2,0,0,0],
+    ]
+    showed2 = [
+        [0,0,0,0,3,3,0,0,0,0],
+        [0,0,0,0,3,0,0,0,0,0],
+        [0,0,0,0,3,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,0,1,1,0,0,0,0],
+        [0,0,0,2,2,2,2,0,0,0],
+    ]
+    board = Board(3)
+    board.fixed = fixed
+    board.set_cur_block(0)
+    board.block_pos = Position(4,4)
+
+    assert board.show() == showed
+
+    # when
+    board.fix_block()
+    board.set_cur_block(2)
+
+    # then
+    assert board.fixed == showed  
+    assert board.show() == showed2
