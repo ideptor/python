@@ -81,7 +81,37 @@ def test_rotate():
         assert b.show() == block1[idx%len(block1)]
         b.rotate()
 
+def test_roate_backward():
+    # given
+    block1 = [
+        [
+            [2,2],
+            [0,2],
+            [0,2]
+        ],
+         [
+            [0,0,2],
+            [2,2,2],
+        ],
+        [
+            [2,0],
+            [2,0],
+            [2,2]
+        ],
+        [
+            [2,2,2],
+            [2,0,0],
+        ],
+    ]
 
+    #when
+    b = Block(1)
+    b.rotate(-1)
+
+    # then
+    assert b.show() == block1[3]
+
+        
 def test_random_block():
     
     # given
