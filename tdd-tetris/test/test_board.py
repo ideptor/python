@@ -319,3 +319,36 @@ def test_not_rotate_boundary_out():
 
     # then
     assert board.show() == showed  # not rotated
+
+
+def test_not_rotate_collision():
+    # given
+    fixed = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,3,0,0,0,0],
+        [0,0,0,0,0,3,0,0,0,0],
+        [0,0,0,0,0,3,0,0,0,0],
+        [0,0,0,0,0,3,0,0,0,0],
+    ]
+    showed = [
+        [0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,7,3,0,0,0,0],
+        [0,0,0,0,7,3,0,0,0,0],
+        [0,0,0,0,7,3,0,0,0,0],
+        [0,0,0,0,7,3,0,0,0,0],
+    ]
+    board = Board(5)
+    board.fixed = fixed
+    board.set_cur_block(6)
+    board.move_block(Move.DOWN)
+    assert board.show() == showed
+
+    # when
+    assert board.block.shape_idx == 6
+    assert board.block.rotate_idx == 0
+    assert board.block.blocks[board.block.shape_idx][board.block.rotate_idx] == \
+        [[7],[7],[7],[7]]
+    board.rotate_block()
+
+    # then
+    assert board.show() == showed  # not rotated

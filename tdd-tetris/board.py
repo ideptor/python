@@ -74,6 +74,9 @@ class Board:
         self.block.rotate()
         if not self.__boundary_check(self.block_pos):
             self.block.rotate(-1)
+        elif not self.__collision_check(self.block_pos):
+            self.block.rotate(-1)            
+
 
     def move_block(self, direction: Move):
 
