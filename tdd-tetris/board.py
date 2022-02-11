@@ -70,6 +70,10 @@ class Board:
         _, width = self.block.get_height_width()
         self.block_pos = Position(0, int((10 - width) / 2))
 
+    def rotate_block(self):
+        self.block.rotate()
+        if not self.__boundary_check(self.block_pos):
+            self.block.rotate(-1)
 
     def move_block(self, direction: Move):
 

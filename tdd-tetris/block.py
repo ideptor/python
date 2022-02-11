@@ -28,8 +28,8 @@ class Block:
         width = len(cur[0])
         return height, width
 
-    def rotate(self):
-        self.rotate_idx += 1
+    def rotate(self, direction:int=1):
+        self.rotate_idx += direction
         self.rotate_idx %= len(self.blocks[self.shape_idx])
 
     blocks = [
@@ -88,7 +88,7 @@ class Block:
             [
                 [0,4,0],
                 [4,4,4],
-            ],
+            ],            
             [
                 [4,0],
                 [4,4],
@@ -98,6 +98,7 @@ class Block:
                 [0,4,0],
                 [4,4,4],
             ],
+
         ],
         [
             [

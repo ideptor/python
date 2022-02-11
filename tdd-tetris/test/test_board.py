@@ -295,3 +295,27 @@ def test_remove_filled():
     assert len(board.fixed) == 7
     assert board.fixed == fixed2
     assert board.show() == showed2    
+
+
+def test_not_rotate_boundary_out():
+    # given
+
+    showed = [
+        [0,0,0,0,0,0,0,0,0,4],
+        [0,0,0,0,0,0,0,0,4,4],
+        [0,0,0,0,0,0,0,0,0,4],
+        [0,0,0,0,0,0,0,0,0,0],
+    ]
+    board = Board(4)
+    board.set_cur_block(3)
+
+    for _ in range(4):
+        board.move_block(Move.RIGHT)
+
+    assert board.show() == showed
+
+    # when
+    board.rotate_block()
+
+    # then
+    assert board.show() == showed  # not rotated
