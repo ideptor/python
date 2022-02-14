@@ -1,8 +1,29 @@
 import tkinter
 from turtle import width
+from tkinter import Canvas
 
 
 class MainUI:
+
+    def __init__(self):
+        self.window = self.__init_window()
+        self.c_width = 600
+        self.c_height = 800
+        self.b_length = 25
+        self.edge = 30
+        self.canvas = Canvas(
+            master = self.window, 
+            width = self.c_width,
+            height = self.c_height,
+            relief="solid", bd=2)
+
+        self.btn_start = self.__create_btn("start", self.press_btn_start)
+
+        self.location = 0
+        self.__test_draw()
+        
+        
+        #canvas.pack()
 
     def press_btn_start(self):
         print("start")
@@ -16,7 +37,15 @@ class MainUI:
         return window
 
     def __test_draw(self):
-        line=self.canvas.create_line(10,10,20,20,20,130,30,140,fill='red')
+        #line=self.canvas.create_line(10,10,20,20,20,130,30,140,fill='red')
+        self.canvas.create_rectangle(
+            0,0,self.c_width,self.c_height, fill='white')
+
+        x = 100
+        y = 10 + self.location
+        self.canvas.create_rectangle(
+            x,y,x+self.b_length,y+self.b_length,
+             fill='red')
         self.canvas.pack()
 
     def __create_btn(self, text, command):
@@ -32,22 +61,21 @@ class MainUI:
 
         return button
 
-    def __init__(self):
-        self.window = self.__init_window()
-        self.canvas = tkinter.Canvas(self.window, relief="solid", bd=2)
+    def progress(self):
+        import time
+        while True:
+            time.sleep(0.5)
+            self.location += self.b_length
+            self.__test_draw()
 
-        self.btn_start = self.__create_btn("start", self.press_btn_start)
-
-        self.__test_draw()
-            
-
-        #canvas.pack()
-
-    def show(self):        
+    def start(self):
+        import threading
+        progress_thread = threading.Thread(target=self.progress)
+        progress_thread.start()
         self.window.mainloop()
 
 if __name__ == "__main__":
     main_ui = MainUI()
-    main_ui.show()
+    main_ui.start()
     
 
