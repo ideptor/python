@@ -1,0 +1,1 @@
+https://github.com/ideptor/python/blob/master/practice/bobe2208/w1_python_basic.ipynb
