@@ -3,7 +3,13 @@
 https://colab.research.google.com
 
 ### 1일차 실습
-https://github.com/ideptor/python/blob/master/practice/bobe2208/w1_python_basic.ipynb
+
+|Title|URL|
+|---|---|
+|python기초|https://github.com/ideptor/python/blob/master/practice/bobe2208/w1_python_basic.ipynb|
 
 ### 2일차 실습
-https://github.com/ideptor/python/blob/master/practice/bobe2208/w2_python_basic.ipynb
+|Title|URL|
+|---|---|
+|python문법2|https://github.com/ideptor/python/blob/master/practice/bobe2208/w2_python_basic.ipynb|
+|KNN 실습(IRIS)|https://github.com/ideptor/python/blob/36687e95a17e5b66645f48c2038f97d105d1540b/practice/bobe2208/w2_iris_knn.ipynb|
