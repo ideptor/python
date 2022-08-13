@@ -6,7 +6,7 @@ https://colab.research.google.com
 
 |Title|URL|
 |---|---|
-|python기초|https://github.com/ideptor/python/blob/master/practice/bobe2208/w1_python_basic.ipynb|
+|python문법1|https://github.com/ideptor/python/blob/master/practice/bobe2208/w1_python_basic.ipynb|
 
 ### 2일차 실습
 |Title|URL|
